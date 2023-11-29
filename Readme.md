@@ -11,7 +11,7 @@ git add spec/javascripts
 ```
 Aparecera lo siguiente de output:
 
-```jasmine
+```yml
 identical  spec/javascripts/support/jasmine.yml
 route  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 ```
