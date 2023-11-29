@@ -103,6 +103,16 @@ it('calls correct URL', function() {
       expect($.ajax.calls.mostRecent().args[0]['url']).toEqual('/movies/1');
     });
 ```
+Estas líneas de código están probando el comportamiento cuando se hace clic en un enlace de película `(#movies a)`.
+
+`spyOn($, 'ajax')` Jasmine está espiando la función `$.ajax` para rastrear sus llamadas y permitir manipulaciones en su comportamiento durante la prueba.
+
+`$('#movies a').trigger('click')` Se simula el clic en el enlace de la película.
+
+`expect($.ajax.calls.mostRecent().args[0]['url']).toEqual('/movies/1')` Se espera que la última llamada a `$.ajax` tenga una URL específica `('/movies/1')`. Esto verifica que el código hace la solicitud Ajax con la URL correcta cuando se hace clic en el enlace.
+
+El `spyOn` permite la creación de un espía (spy) sobre la función `$.ajax`, lo que significa que podemos rastrear sus llamadas y, en este caso, verificar que se hace una llamada con la URL esperada.
+
 
 **Pregunta:**¿Qupe hacen las siguientes líneas del código anterior?. 
 
@@ -120,6 +130,18 @@ it('calls correct URL', function() {
         expect($('#movieInfo').text()).toContain('Casablanca');
 
 ```
+
+Estas líneas de código se centran en simular una llamada Ajax y verificar los resultados.
+
+`let htmlResponse = readFixtures('movie_info.html')` Se carga el contenido del fijador (fixture) llamado `'movie_info.html'` en la variable htmlResponse. Este fixture probablemente contiene datos simulados de la respuesta del servidor.
+
+`spyOn($, 'ajax').and.callFake(function(ajaxArgs) { ajaxArgs.success(htmlResponse, '200'); })` Se espía la función `$.ajax` y se reemplaza con una función falsa (fake) que simula una llamada Ajax exitosa. Cuando la función success se llama, se utiliza htmlResponse como datos de respuesta simulados y se pasa el código de estado '200'.
+
+`$('#movies a').trigger('click')` Se simula el clic en el enlace de la película.
+
+`it('makes #movieInfo visible', function() { expect($('#movieInfo')).toBeVisible(); })` Se verifica que, después de la llamada Ajax simulada, el elemento `#movieInfo` se hace visible.
+
+`it('places movie title in #movieInfo', function() { expect($('#movieInfo').text()).toContain('Casablanca'); })` Se verifica que el contenido de `#movieInfo` contiene el texto 'Casablanca', lo que indica que los datos simulados se han insertado correctamente.
  
 **Pregunta:** Dado que Jasmine carga todos los ficheros JavaScript antes de ejecutar ningún ejemplo, la llamada a `setup` (línea 34 del codigo siguiente llamado `movie_popup.js`)ocurre antes de que se ejecuten nuestras pruebas, comprueba que dicha función hace su trabajo y muestra los resultados.
 
@@ -160,8 +182,24 @@ var MoviePopup = {
 $(MoviePopup.setup);
 
 ```
+El método `setup` se encarga de agregar un elemento `div` oculto al final de la página y configurar un manejador de eventos para el clic en el enlace de películas.
+
+La función `setup` se ejecuta cuando el script se carga debido a la última línea del código que dice `$(MoviePopup.setup);`, la cual se ejecuta cuando el DOM está listo.
 
 **Pregunta:** Indica cuales son  los stubs y fixtures disponibles en Jasmine y Jasmine-jQuery. 
+
+Stubs (Falsificadores) en Jasmine: simula el comportamiento de funciones reales. En el contexto de Jasmine, el spyOn se puede utilizar como un stub para reemplazar la implementación de una función y rastrear su comportamiento.
+
+```javascript
+spyOn(obj, 'method').and.returnValue(value);
+```
+
+Fixtures (Fijadores) en Jasmine: Jasmine por sí mismo no proporciona un concepto directo de fixtures, pero en el contexto de Jasmine-jQuery, se pueden usar fixtures para cargar datos de prueba en el DOM antes de ejecutar las pruebas. Jasmine-jQuery agrega la capacidad de trabajar con fixtures a Jasmine.
+
+```javascript
+loadFixtures('path/to/fixture.html');
+```
+Ambos conceptos (stubs y fixtures) son parte del conjunto de herramientas que Jasmine y Jasmine-jQuery proporcionan para facilitar las pruebas en JavaScript. Los stubs permiten simular comportamientos específicos, mientras que los fixtures ayudan a establecer un entorno de prueba predecible.
 
 **Pregunta:** Como en RSpec, Jasmine permite ejecutar código de inicialización y desmantelamiento de pruebas utilizando `beforeEach` y `afterEach`.  El código de inicialización carga el fixture HTML mostrado en el código siguiente, para imitar el entorno que el manejador `getMovieInfo` vería si fuera llamado después de mostrar la lista de películas. 
 
@@ -175,6 +213,7 @@ $(MoviePopup.setup);
 </div>
 ```
 
+En el contexto de Jasmine, se puede utilizar `beforeEach` para ejecutar código de inicialización antes de cada prueba en un bloque `describe` . el código dentro del bloque `afterEach` es opcional y se utilizaría para realizar tareas de limpieza después de cada prueba si es necesario.
 
 La funcionalidad de fixtures la proporciona Jasmine-jQuery, cada fixture se carga dentro de `div#jasmine-fixtures`, que está dentro de `div#jasmine_content` en la página principal de Jasmine, y todos los fixtures se eliminan después de cada especificación (spec) para preservar la independencia de las pruebas. 
 
