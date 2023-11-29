@@ -24,13 +24,33 @@ describe ('Jasmine basic check', function() {
     it('works', function() { expect(true).toBe(true); }); 
 }); 
 ```
+Debemos agregar `/= link boot0.js` en la ubicacion `app/assets/config/manifest.js`
+
 Para ejecutar pruebas de Jasmine, simplemente inicia tu aplicación con el comando `rails server` y, una vez que se esté ejecutando, busca el subdirectorio `spec` de tu aplicación (por ejemplo, `http://localhost:3000/specs` si desarrollas la actividad en tu propia computadora) para ejecutar todas las especificaciones y ver los resultados. 
 
 **Importante:** De ahora en adelante, cuando cambies cualquier código en `app/assets/javascripts` o pruebas en `spec/javascripts`, simplemente vuelve a cargar la página del navegador para volver a ejecutar todas las pruebas. 
 
 **Pregunta:** ¿Cuáles son los problemas que se tiene cuando se debe probar Ajax?. Explica tu respuesta.
 
+Al probar código que involucra peticiones Ajax, se presentan varios desafíos:
+
+**Asincronía:**  Las solicitudes Ajax son operaciones asíncronas, lo que significa que no bloquean la ejecución del código. Esto complica la escritura de pruebas que esperan el resultado de una solicitud Ajax.
+
+**Dependencia del Servidor:**  Las pruebas Ajax dependen del servidor para proporcionar respuestas correctas. Si el servidor está inactivo o si las respuestas cambian, las pruebas pueden fallar, incluso si el código del cliente es correcto.
+
+**Tiempo de Respuesta:** Las pruebas Ajax pueden depender del tiempo de respuesta del servidor. Si la respuesta no llega a tiempo, las pruebas pueden fallar, incluso si el código es funcional.
+
+**Complejidad del Código:** Las operaciones Ajax a menudo involucran manipulaciones del DOM o actualizaciones de la interfaz de usuario. Probar estos aspectos puede ser más complejo que probar lógica simple
+
 **Pregunta:** ¿Qué son los stubs, espias y fixture en Jasmine para realizar pruebas de Ajax?
+
+**Stubs:** En el contexto de Jasmine, un stub es una función falsa que simula el comportamiento de una función real. Puedes usar stubs para simular respuestas de llamadas Ajax sin realizar las solicitudes reales al servidor. Esto permite que las pruebas se ejecuten de manera más rápida y predecible.
+
+**Espías:** Los espías en Jasmine son funciones que permiten rastrear llamadas, argumentos y comportamientos de funciones reales. Puedes usar espías para verificar si una función específica (por ejemplo, una función de éxito de Ajax) ha sido llamada durante una prueba.
+
+**Fixtures:** Los fixtures son datos de prueba predefinidos que se utilizan para simular respuestas del servidor. Al cargar datos de prueba en un fixture, puedes garantizar que las pruebas de Ajax se ejecuten, independientemente de las respuestas reales del servidor.
+
+Ejemplo de uso de fixtures en Jasmine:
 
 La estructura básica de los casos de prueba de Jasmine se hace evidente en el código siguiente como en RSpec, Jasmine utiliza `it` para especificar un único ejemplo y bloques describe anidados para agrupar conjuntos de ejemplos relacionados. Tal y como ocurre en RSpec, `describe` e `it` reciben un bloque de código como argumento, pero mientras que en Ruby los bloques de código están delimitados por `do. . . end`, en JavaScript son funciones anónimas (funciones sin nombre) sin argumentos. 
 
