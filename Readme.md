@@ -4,7 +4,7 @@ Presenta esta actividad en un repositorio llamado `Pruebas-JS-Ajax`. La activida
 
 Para empezar a utilizar [Jasmine](https://jasmine.github.io/), añada `gem jasmine` a tu Gemfile y ejecute bundle como siempre; después, ejecuta los comandos siguientes desde el directorio raíz de tu aplicación.
 
-```
+```cmd
 rails generate jasmine_rails:install 
 mkdir spec/javascripts/fixtures 
 git add spec/javascripts
@@ -19,7 +19,7 @@ route  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
 No podemos ejecutar un conjunto de pruebas Jasmine completamente vacío, así que crea el fichero `spec/javascripts/basic_check_spec.js` con el siguiente código: 
 
-```
+```javascript
 describe ('Jasmine basic check', function() { 
     it('works', function() { expect(true).toBe(true); }); 
 }); 
@@ -58,7 +58,7 @@ La secuencia de puntuación `});` prevalece porque `describe` e `it` son funcion
 
 **Pregunta:** Experimenta el siguiente código de especificaciones (specs) de Jasmine del camino feliz del código AJAX llamado `movie_popup_spec.js`.
 
-```
+```javascript
 describe('MoviePopup', function() {
   describe('setup', function() {
     it('adds popup Div to main page', function() {
@@ -96,7 +96,7 @@ describe('MoviePopup', function() {
 
 **Pregunta** ¿Que hacen las siguientes líneas del código anterior?. ¿Cuál es el papel de `spyOn`  de Jasmine y los stubs en el código dado.
 
-```
+```javascript
 it('calls correct URL', function() {
       spyOn($, 'ajax');
       $('#movies a').trigger('click');
@@ -116,7 +116,7 @@ El `spyOn` permite la creación de un espía (spy) sobre la función `$.ajax`, l
 
 **Pregunta:**¿Qupe hacen las siguientes líneas del código anterior?. 
 
-```
+```javascript
  let htmlResponse = readFixtures('movie_info.html');
         spyOn($, 'ajax').and.callFake(function(ajaxArgs) { 
           ajaxArgs.success(htmlResponse, '200');
@@ -145,7 +145,7 @@ Estas líneas de código se centran en simular una llamada Ajax y verificar los 
  
 **Pregunta:** Dado que Jasmine carga todos los ficheros JavaScript antes de ejecutar ningún ejemplo, la llamada a `setup` (línea 34 del codigo siguiente llamado `movie_popup.js`)ocurre antes de que se ejecuten nuestras pruebas, comprueba que dicha función hace su trabajo y muestra los resultados.
 
-```
+```javascript
 var MoviePopup = {
   setup: function() {
     // add hidden 'div' to end of page to display popup:
@@ -203,7 +203,7 @@ Ambos conceptos (stubs y fixtures) son parte del conjunto de herramientas que Ja
 
 **Pregunta:** Como en RSpec, Jasmine permite ejecutar código de inicialización y desmantelamiento de pruebas utilizando `beforeEach` y `afterEach`.  El código de inicialización carga el fixture HTML mostrado en el código siguiente, para imitar el entorno que el manejador `getMovieInfo` vería si fuera llamado después de mostrar la lista de películas. 
 
-```
+```html
 <div id="movies">
   <div class="row">
     <div class="col-8"><a href="/movies/1">Casablanca</a></div>
