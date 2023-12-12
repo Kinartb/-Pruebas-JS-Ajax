@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "test": "GECKODRIVER_PATH=./node_modules/.bin/geckodriver jasmine-browser-runner runSpecs"
+  }
+}
+
