@@ -227,5 +227,17 @@ público). Sin embargo, podemos aprovechar las clausuras para obtener atributos 
 3. Escribe el código AJAX necesario para crear menús en cascada basados en una asociación `has_many`. Esto es, dados los modelos de Rails A y B, donde A `has_many` (tiene muchos) B, el primer menú de la pareja tiene que listar las opciones de A, y cuando se selecciona una, devolver las opciones de B correspondientes y rellenar el menú B.
 4. Extienda la función de validación en ActiveModel para generar automáticamente código JavaScript que valide las entradas del formulario antes de que sea enviado. Por ejemplo, puesto que el modelo `Movie` de `RottenPotatoes` requiere que el título de cada película sea distinto de la cadena vacía, el código JavaScript debería evitar que el formulario `Add New Movie` se enviara si no se cumplen los criterios de validación, mostrar un mensaje de ayuda al usuario, y resaltar el(los) campo(s) del formulario que ocasionaron los problemas de validación. Gestiona, al menos, las validaciones integradas, como que los títulos sean distintos de cadena vacía, que las longitudes máxima y mínima de la cadena de caracteres sean correctas, que los valores numéricos estén dentro de los límites de los rangos, y para puntos adicionales, realiza las validaciones basándose en expresiones regulares.
 
+### extra
 
+!()[https://github.com/Kinartb/-Pruebas-JS-Ajax/blob/main/imagenes/jasmine.png]
+
+comandos importantes:
+```
+jasmine-node spec
+```
+
+
+```
+ npm test
+```
 
