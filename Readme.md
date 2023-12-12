@@ -229,7 +229,7 @@ público). Sin embargo, podemos aprovechar las clausuras para obtener atributos 
 
 ### extra
 
-!()[https://github.com/Kinartb/-Pruebas-JS-Ajax/blob/main/imagenes/jasmine.png]
+![](https://github.com/Kinartb/-Pruebas-JS-Ajax/blob/main/imagenes/jasmine.png)
 
 comandos importantes:
 ```
